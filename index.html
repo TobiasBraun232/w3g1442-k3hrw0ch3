@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Kehrwochenplan</title>
+<meta name="theme-color" content="#F7F5F1">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Kehrwoche">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+<script>
+  // Theme vor dem ersten Paint setzen, um Flackern zu vermeiden.
+  (function () {
+    try {
+      var p = JSON.parse(localStorage.getItem("kw_theme"));
+      var dark = p === "dark" || ((p == null || p === "auto") &&
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+      document.documentElement.dataset.theme = dark ? "dark" : "light";
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<div class="app">
+
+  <!-- Erstbesuch: Wohnung auswählen -->
+  <section id="onboarding" class="onboarding">
+    <div class="topbar">
+      <button class="theme-toggle icon-btn" type="button" aria-label="Dunkelmodus umschalten"></button>
+    </div>
+    <h1>Willkommen 👋</h1>
+    <p class="sub">Tippe auf deine Wohnung – es geht direkt weiter. Über ✎ kannst du sie umbenennen. Alles bleibt nur auf diesem Gerät.</p>
+    <div id="wohnungGrid" class="wohnung-list"></div>
+  </section>
+
+  <!-- Hauptansicht -->
+  <section id="main">
+
+    <header id="header" class="header">
+      <div class="header-left">
+        <div id="avatar" class="avatar"></div>
+        <div class="header-labels">
+          <p class="header-eyebrow">Deine Wohnung</p>
+          <p id="headerTitle" class="header-title"></p>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="theme-toggle icon-btn" type="button" aria-label="Dunkelmodus umschalten"></button>
+        <button id="changeWohnungBtn" class="link-btn">Ändern</button>
+      </div>
+    </header>
+
+    <div class="week-nav">
+      <button id="prevWeek" class="nav-btn" aria-label="Vorherige Woche">‹</button>
+      <span id="weekLabel" class="week-label"></span>
+      <button id="nextWeek" class="nav-btn" aria-label="Nächste Woche">›</button>
+    </div>
+
+    <div id="weekCard" class="week-card">
+      <p id="headline" class="headline"></p>
+      <p id="subline" class="subline"></p>
+      <span id="weekTag" class="tag hidden"></span>
+    </div>
+
+    <div id="actions" class="actions"></div>
+
+    <div id="panel" class="panel hidden"></div>
+
+    <textarea id="noteField" class="note-field" placeholder="Notiz für dich selbst zu dieser Woche..."></textarea>
+
+    <div class="countdown">
+      <span id="countdownText"></span>
+    </div>
+    <div class="countdown countdown-next">
+      <span id="countdownNext"></span>
+    </div>
+
+  </section>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
