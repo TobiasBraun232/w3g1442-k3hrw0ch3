@@ -1,0 +1,275 @@
+:root {
+  --bg: #F7F5F1;
+  --card-bg: #FFFFFF;
+  --text-primary: #262420;
+  --text-secondary: #6F6A63;
+  --text-muted: #A29C93;
+  --border: #E3DFD8;
+  --border-strong: #CFC9BF;
+  --radius-lg: 26px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  --w1-base:#E4EAF4; --w1-strong:#B9CBE8; --w1-border:#6B8CC7; --w1-text:#1B3A63;
+  --w2-base:#FCE8EA; --w2-strong:#F7C4C9; --w2-border:#D97C88; --w2-text:#6B2430;
+  --w3-base:#FCF3DC; --w3-strong:#F0DA96; --w3-border:#C9A227; --w3-text:#5C4A0A;
+  --w4-base:#E1F2E9; --w4-strong:#AEE0C4; --w4-border:#5FA97D; --w4-text:#1F4A30;
+  --w5-base:#EEE6F7; --w5-strong:#CFBDEE; --w5-border:#9B7FD4; --w5-text:#442C6B;
+  --w6-base:#FCE9E0; --w6-strong:#F5C6AC; --w6-border:#D98A5A; --w6-text:#6B3A18;
+  --w7-base:#F3E6EF; --w7-strong:#E3BFD8; --w7-border:#B876A0; --w7-text:#5C2C48;
+  --w8-base:#E5EFEC; --w8-strong:#B9D8CF; --w8-border:#5FA491; --w8-text:#1F4A40;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #171512;
+    --card-bg: #221F1B;
+    --text-primary: #EFEBE4;
+    --text-secondary: #B3ADA3;
+    --text-muted: #7C766C;
+    --border: #332F29;
+    --border-strong: #44403A;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: calc(var(--safe-top) + 20px) 16px calc(var(--safe-bottom) + 24px);
+}
+
+.app {
+  width: 100%;
+  max-width: 420px;
+}
+
+.hidden { display: none !important; }
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.header-labels p { margin: 0; }
+.header-eyebrow { font-size: 11px; color: var(--text-muted); }
+.header-title { font-size: 15px; font-weight: 600; }
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 12px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+/* Week nav */
+.week-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.nav-btn {
+  background: var(--card-bg);
+  border: 0.5px solid var(--border);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.nav-btn:active { transform: scale(0.93); }
+
+.week-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* Week card */
+.week-card {
+  border-radius: var(--radius-lg);
+  padding: 28px 18px;
+  text-align: center;
+  margin-bottom: 14px;
+  border: 2px solid transparent;
+  background: var(--card-bg);
+  transition: background 0.15s ease, border-color 0.15s ease;
+  touch-action: pan-y;
+}
+
+.week-card.own {
+  border-width: 2px;
+}
+
+.week-card .headline {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.week-card .subline {
+  font-size: 13px;
+  margin: 0;
+}
+
+.week-card .tag {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: rgba(0,0,0,0.06);
+}
+
+/* Buttons row */
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.btn {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 11px 10px;
+  border-radius: var(--radius-sm);
+  border: 0.5px solid var(--border-strong);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.btn:active { transform: scale(0.98); }
+.btn.danger { color: #A32D2D; }
+
+/* Note field */
+.note-field {
+  width: 100%;
+  min-height: 60px;
+  font-size: 13px;
+  font-family: inherit;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  resize: none;
+  margin-bottom: 16px;
+}
+.note-field::placeholder { color: var(--text-muted); }
+
+/* Countdown */
+.countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 0.5px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+.countdown b { color: var(--text-primary); }
+
+/* Onboarding */
+.onboarding {
+  padding-top: 10vh;
+}
+.onboarding h1 {
+  font-size: 20px;
+  margin: 0 0 4px;
+}
+.onboarding p.sub {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0 0 22px;
+}
+.wohnung-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.wohnung-pick {
+  padding: 16px 10px;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.wohnung-pick.selected {
+  border-width: 2px;
+}
+
+/* Inline form (Vertretung / Tausch) */
+.inline-form {
+  background: var(--card-bg);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 12px;
+}
+.inline-form label {
+  display: block;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+.inline-form input[type="date"],
+.inline-form input[type="text"] {
+  width: 100%;
+  font-size: 13px;
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  border: 0.5px solid var(--border-strong);
+  margin-bottom: 10px;
+  font-family: inherit;
+  background: var(--bg);
+  color: var(--text-primary);
+}
+.inline-form .row { display: flex; gap: 8px; }
+.inline-form .row > div { flex: 1; }
